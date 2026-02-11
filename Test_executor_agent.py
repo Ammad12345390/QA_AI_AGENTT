@@ -8,8 +8,6 @@ import os
 import time
 import subprocess
 import shlex
-
-
 PROJECT_PATH = os.path.dirname(__file__)
 TIMEOUT_S = 90 
 
@@ -52,9 +50,9 @@ class TestExecutorAgent:
         os.makedirs(report_dir, exist_ok=True)
         log_path = os.path.join(report_dir, "unittest_output.log")
 
-        # ✅ Run unittest discover for all generated tests
+        # Run unittest discover for all generated tests
         cmd = "python -m unittest discover -s . -p 'test_*.py'"
-        print(f"🚀 Running command: {cmd}")
+        print(f" Running command: {cmd}")
 
         start_time = time.time()
         try:
