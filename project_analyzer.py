@@ -9,7 +9,9 @@ import shutil
 import zipfile
 import ast
 from tkinter import Tk, filedialog
-
+import ast
+from pathlib import Path
+import astpretty
 
 def extract_zip(zip_path, extract_to="extracted"):
     """
@@ -56,19 +58,19 @@ def find_python_entry_files(folder):
 
 def generate_ast_tree(file_path):
     """
-    Parses a Python file and prints a simplified AST (Abstract Syntax Tree).
+    Parses a Python file and returns a simplified AST (Abstract Syntax Tree) string.
     """
-    print(f"\n🧠 Generating AST for: {file_path}")
+    print(f"\n Generating AST for: {file_path}")
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             source = f.read()
 
         tree = ast.parse(source, filename=file_path)
-
-        print("\n📜 Abstract Syntax Tree:")
-        print(ast.dump(tree, indent=4))  # Pretty print with indentation
+        
+        # Return the formatted AST string
+        return ast.dump(tree, indent=4)
 
     except SyntaxError as e:
-        print(f"❌ Syntax error in {file_path}: {e}")
+        return f"Syntax error in {file_path}: {e}"
     except Exception as e:
-        print(f"❌ Error generating AST: {e}")
+        return f"Error generating AST: {e}"
